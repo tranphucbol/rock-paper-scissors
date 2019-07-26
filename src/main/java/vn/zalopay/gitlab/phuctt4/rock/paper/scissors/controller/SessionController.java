@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.dto.SessionPlay;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.Session;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.SessionDetail;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.User;
@@ -30,10 +31,14 @@ public class SessionController {
         session.setTurns(turns);
 
         sessionService.createSession(username, session);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", session.getId());
-        jsonObject.put("turns", session.getTurns());
-        return ResponseEntity.ok(jsonObject.toMap());
+        JSONObject data = new JSONObject();
+        data.put("id", session.getId());
+        data.put("turns", session.getTurns());
+
+        JSONObject response = new JSONObject();
+        response.put("data", data.toMap());
+
+        return ResponseEntity.ok(response.toMap());
     }
 
     @PostMapping("/sessions/{id}")
@@ -44,9 +49,15 @@ public class SessionController {
     ) {
         String username = (String)request.getAttribute("username");
 
-        Session session = sessionService.getSession(username, id);
-        if(session != null) {
+        SessionPlay sessionPlay = sessionService.getSessionPlay(username, id);
+        JSONObject response = new JSONObject();
+
+        Session session = sessionPlay.getSession();
+        Integer remain = sessionPlay.getRemainTurn();
+
+        if(session != null && remain > 0) {
             if(!(type >= 1 && type <= 3)) {
+                response.put("error", "Wrong type");
                 return ResponseEntity.ok("Wrong type");
             } else {
                 Random random = new Random();
@@ -57,10 +68,26 @@ public class SessionController {
                 session.addSessionDetail(sessionDetail);
 
                 sessionService.save(session);
-                return ResponseEntity.ok(getResultToString(result));
+
+                if(remain == 1) {
+                    Integer generalResult = sessionService.generalResult(session);
+                    if (generalResult == 0) {
+                        session.setTurns(session.getTurns() + 1);
+                        sessionService.save(session);
+                        response.put("message", "General result is draw");
+                    } else if (generalResult == 1){
+                        response.put("message", "General result is winning");
+                    } else {
+                        response.put("message", "General result is losing");
+                    }
+                }
+
+                response.put("result", getResultToString(result));
+                return ResponseEntity.ok(response.toMap());
             }
         } else {
-            return ResponseEntity.ok("Session not found or Session out of turn");
+            response.put("error", "Session not found or session out of turn");
+            return ResponseEntity.ok(response.toMap());
         }
     }
 
