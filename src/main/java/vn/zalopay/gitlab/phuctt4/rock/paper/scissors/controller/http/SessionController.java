@@ -1,4 +1,4 @@
-package vn.zalopay.gitlab.phuctt4.rock.paper.scissors.controller;
+package vn.zalopay.gitlab.phuctt4.rock.paper.scissors.controller.http;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import org.json.JSONObject;

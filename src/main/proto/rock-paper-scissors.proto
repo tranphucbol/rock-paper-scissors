@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+package vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc;
+
+message SessionRequest {
+    int32 turns = 1;
+}
+
+message SessionResponse {
+    int64 id = 1;
+    int32 turns = 2;
+}
+
+service SessionService {
+    rpc createService(SessionRequest) returns (SessionResponse);
+}

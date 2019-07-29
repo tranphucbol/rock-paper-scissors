@@ -1,4 +1,4 @@
-package vn.zalopay.gitlab.phuctt4.rock.paper.scissors.controller;
+package vn.zalopay.gitlab.phuctt4.rock.paper.scissors.controller.http;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +26,7 @@ public class JwtAuthenticationController {
     private JwtUserDetailService userDetailService;
 
     @PostMapping(path = "/auth")
-    public ResponseEntity<JwtResponse> createAuthenticationToken(@RequestBody UserLoginForm userLoginForm) throws Exception {
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody UserLoginForm userLoginForm) throws Exception {
         authenticate(userLoginForm.getUsername(), userLoginForm.getPassword());
         final UserDetails userDetails = userDetailService.loadUserByUsername(userLoginForm.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);

@@ -1,9 +1,8 @@
-package vn.zalopay.gitlab.phuctt4.rock.paper.scissors.controller;
+package vn.zalopay.gitlab.phuctt4.rock.paper.scissors.controller.http;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
