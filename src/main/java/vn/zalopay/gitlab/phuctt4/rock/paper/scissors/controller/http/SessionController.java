@@ -3,15 +3,20 @@ package vn.zalopay.gitlab.phuctt4.rock.paper.scissors.controller.http;
 import com.fasterxml.jackson.core.JsonGenerator;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.dto.DataResponse;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.dto.SessionPlay;
+import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.dto.SessionResponse;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.Session;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.SessionDetail;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.User;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.service.SessionService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @RestController
@@ -19,6 +24,25 @@ public class SessionController {
 
     @Autowired
     private SessionService sessionService;
+
+    @GetMapping("/sessions")
+    public ResponseEntity<?> getAllSession(HttpServletRequest request) {
+        String username = (String) request.getAttribute("username");
+
+        List<Session> sessions = sessionService.getAllSessionByUser(username);
+        List<SessionResponse> sessionResponses = new ArrayList<>();
+
+        sessions.forEach(session -> {
+            sessionResponses.add(new SessionResponse(session));
+        });
+
+        return ResponseEntity.ok(new DataResponse(sessionResponses));
+    }
+
+    @GetMapping("/top/{limit}")
+    public ResponseEntity<?> getTop(@PathVariable Integer limit) {
+        return ResponseEntity.ok(sessionService.getTopUser(limit));
+    }
 
     @PostMapping("/sessions")
     public ResponseEntity<?> createSession(
@@ -37,7 +61,6 @@ public class SessionController {
 
         JSONObject response = new JSONObject();
         response.put("data", data.toMap());
-
         return ResponseEntity.ok(response.toMap());
     }
 

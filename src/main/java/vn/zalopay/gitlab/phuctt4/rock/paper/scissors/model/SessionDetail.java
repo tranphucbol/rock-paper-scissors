@@ -1,16 +1,17 @@
 package vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "session_details")
+@JsonIgnoreProperties(value = { "session" })
 public class SessionDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Integer result;
-
     private Integer type;
 
     @ManyToOne(fetch = FetchType.LAZY)

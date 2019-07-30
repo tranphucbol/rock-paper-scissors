@@ -5,13 +5,13 @@ import java.io.Serializable;
 public class JwtResponse implements Serializable {
     private static final long serialVersionUID = -1136433058802378215L;
 
-    private final String jwtToken;
+    private final String token;
 
-    public JwtResponse(String jwtToken) {
-        this.jwtToken = jwtToken;
+    public JwtResponse(String token) {
+        this.token = token;
     }
 
-    public String getJwtToken() {
-        return jwtToken;
+    public String getToken() {
+        return token;
     }
 }
