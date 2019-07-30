@@ -1,12 +1,15 @@
 package vn.zalopay.gitlab.phuctt4.rock.paper.scissors.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.dto.SessionPlay;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.dto.UserWinning;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.Session;
+import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.SessionCache;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.SessionDetail;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.User;
+import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.repository.SessionCacheRepository;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.repository.SessionDetailRepository;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.repository.SessionRepository;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.repository.UserRepository;
@@ -27,6 +30,9 @@ public class SessionService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private SessionCacheRepository sessionCacheRepository;
 
     public void createSession(String username, Session session) {
         User user = userRepository.findByUsername(username);
@@ -77,15 +83,24 @@ public class SessionService {
     }
 
     public Double getWinningRateOfUser(User user) {
-        List<Session> sessions = user.getSessions();
-        Integer count = 0;
-        for(Session session : sessions) {
-            if(generalResult(session) == 1) {
-                count++;
+        SessionCache sessionCache = sessionCacheRepository.getSessionCache(user.getId());
+        Integer win = 0, count = 0;
+        if(sessionCache == null) {
+            List<Session> sessions = user.getSessions();
+
+            for(Session session : sessions) {
+                if(generalResult(session) == 1) {
+                    win++;
+                }
             }
+            count = sessions.size();
+            sessionCache = new SessionCache(user.getId(), user.getUsername(), win, count);
+            sessionCacheRepository.addSessionCache(sessionCache);
+        } else {
+            count = sessionCache.getCount();
+            win = sessionCache.getWin();
         }
-        int size = sessions.size();
-        return size > 0 ? count * 1.0 / size : 0;
+        return count > 0 ? win * 1.0 / count : 0;
     }
 
     public List<UserWinning> getTopUser(Integer limit) {
@@ -96,5 +111,10 @@ public class SessionService {
                 .sorted((a, b) -> b.getRate().compareTo(a.getRate()))
                 .limit(limit)
                 .collect(Collectors.toList());
+    }
+
+    public void updateSessionCache(String username, Boolean isWinning) {
+        User user = userRepository.findByUsername(username);
+        sessionCacheRepository.updateSessionCache(user, isWinning);
     }
 }

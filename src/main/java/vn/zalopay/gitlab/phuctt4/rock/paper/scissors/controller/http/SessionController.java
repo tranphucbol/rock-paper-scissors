@@ -99,8 +99,10 @@ public class SessionController {
                         sessionService.save(session);
                         response.put("message", "General result is draw");
                     } else if (generalResult == 1){
+                        sessionService.updateSessionCache(username, true);
                         response.put("message", "General result is winning");
                     } else {
+                        sessionService.updateSessionCache(username, false);
                         response.put("message", "General result is losing");
                     }
                 }
