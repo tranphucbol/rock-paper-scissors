@@ -40,12 +40,14 @@ public class SessionService {
         sessionRepository.save(session);
     }
 
-    public SessionPlay getSessionPlay(String username, Long sessionId) {
+    public Session getSession(String username, Long sessionId) {
         User user = userRepository.findByUsername(username);
 
-        Session session = sessionRepository.findByIdAndUser(sessionId, user);
-        int count = sessionDetailRepository.countBySessionId(sessionId);
-        return new SessionPlay(session, session.getTurns() - count);
+        Session session = sessionRepository.findByIdAndUserId(sessionId, user.getId());
+        if(session != null && generalResult(session) != 0) {
+            session = null;
+        }
+        return session;
     }
 
     public Integer generalResult(Session session) {
@@ -62,9 +64,9 @@ public class SessionService {
         int countWin = sessionDetailRepository.countBySessionIdAndResult(session.getId(), 1);
         int countLose = sessionDetailRepository.countBySessionIdAndResult(session.getId(), -1);
 
-        if(countLose >  countWin) {
+        if(countLose >  0) {
             return -1;
-        } else if(countLose < countWin) {
+        } else if(countWin > 0) {
             return 1;
         } else {
             return 0;

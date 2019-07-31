@@ -8,13 +8,11 @@ import java.util.List;
 
 public class SessionResponse {
     private Long id;
-    private Integer turns;
     private Date createdOn;
     private List<SessionDetailResponse> sessionDetailResponses = new ArrayList<>();
 
     public SessionResponse(Session session) {
         this.id = session.getId();
-        this.turns = session.getTurns();
         this.createdOn = session.getCreatedOn();
         session.getSessionDetails().forEach(sessionDetail -> {
             this.sessionDetailResponses.add(new SessionDetailResponse(sessionDetail));
@@ -27,14 +25,6 @@ public class SessionResponse {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getTurns() {
-        return turns;
-    }
-
-    public void setTurns(Integer turns) {
-        this.turns = turns;
     }
 
     public Date getCreatedOn() {

@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface SessionRepository extends JpaRepository<Session, Long> {
-    Session findByIdAndUser(Long id, User user);
+    Session findByIdAndUserId(Long id, Long userId);
     List<Session> findAllByUser(User user);
 }

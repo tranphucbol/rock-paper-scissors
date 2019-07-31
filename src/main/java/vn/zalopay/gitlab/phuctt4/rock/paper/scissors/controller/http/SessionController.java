@@ -45,19 +45,15 @@ public class SessionController {
     }
 
     @PostMapping("/sessions")
-    public ResponseEntity<?> createSession(
-            HttpServletRequest request,
-            @RequestParam Integer turns) {
+    public ResponseEntity<?> createSession(HttpServletRequest request) {
 
         String username = (String)request.getAttribute("username");
 
         Session session = new Session();
-        session.setTurns(turns);
 
         sessionService.createSession(username, session);
         JSONObject data = new JSONObject();
         data.put("id", session.getId());
-        data.put("turns", session.getTurns());
 
         JSONObject response = new JSONObject();
         response.put("data", data.toMap());
@@ -72,13 +68,10 @@ public class SessionController {
     ) {
         String username = (String)request.getAttribute("username");
 
-        SessionPlay sessionPlay = sessionService.getSessionPlay(username, id);
+        Session session= sessionService.getSession(username, id);
         JSONObject response = new JSONObject();
 
-        Session session = sessionPlay.getSession();
-        Integer remain = sessionPlay.getRemainTurn();
-
-        if(session != null && remain > 0) {
+        if(session != null) {
             if(!(type >= 1 && type <= 3)) {
                 response.put("error", "Wrong type");
                 return ResponseEntity.ok("Wrong type");
@@ -92,19 +85,10 @@ public class SessionController {
 
                 sessionService.save(session);
 
-                if(remain == 1) {
-                    Integer generalResult = sessionService.generalResult(session);
-                    if (generalResult == 0) {
-                        session.setTurns(session.getTurns() + 1);
-                        sessionService.save(session);
-                        response.put("message", "General result is draw");
-                    } else if (generalResult == 1){
-                        sessionService.updateSessionCache(username, true);
-                        response.put("message", "General result is winning");
-                    } else {
-                        sessionService.updateSessionCache(username, false);
-                        response.put("message", "General result is losing");
-                    }
+                if(result == 1) {
+                    sessionService.updateSessionCache(username, true);
+                } else if (result == -1) {
+                    sessionService.updateSessionCache(username, false);
                 }
 
                 response.put("result", getResultToString(result));

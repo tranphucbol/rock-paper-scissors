@@ -12,7 +12,7 @@ public class Session {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer turns;
+//    private Integer turns;
 
     private Date createdOn = new Date();
 
@@ -45,13 +45,13 @@ public class Session {
         this.id = id;
     }
 
-    public Integer getTurns() {
-        return turns;
-    }
-
-    public void setTurns(Integer turns) {
-        this.turns = turns;
-    }
+//    public Integer getTurns() {
+//        return turns;
+//    }
+//
+//    public void setTurns(Integer turns) {
+//        this.turns = turns;
+//    }
 
     public Date getCreatedOn() {
         return createdOn;
