@@ -61,16 +61,18 @@ public class SessionService {
 //                countWin++;
 //        }
 
-        int countWin = sessionDetailRepository.countBySessionIdAndResult(session.getId(), 1);
-        int countLose = sessionDetailRepository.countBySessionIdAndResult(session.getId(), -1);
+//        int countWin = sessionDetailRepository.countBySessionIdAndResult(session.getId(), 1);
+//        int countLose = sessionDetailRepository.countBySessionIdAndResult(session.getId(), -1);
 
-        if(countLose >  0) {
-            return -1;
-        } else if(countWin > 0) {
-            return 1;
-        } else {
-            return 0;
-        }
+//        if(countLose >  0) {
+//            return -1;
+//        } else if(countWin > 0) {
+//            return 1;
+//        } else {
+//            return 0;
+//        }
+        int size = session.getSessionDetails().size();
+        return size > 0 ? session.getSessionDetails().get(size - 1).getResult() : 0;
     }
 
     public void save(Session session) {
