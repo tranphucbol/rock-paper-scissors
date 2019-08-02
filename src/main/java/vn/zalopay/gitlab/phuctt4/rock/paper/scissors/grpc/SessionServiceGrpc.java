@@ -51,6 +51,102 @@ public final class SessionServiceGrpc {
      return getCreateSessionMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<SessionRequest,
+      SessionResponse> getGetAllHistoryMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "getAllHistory",
+      requestType = SessionRequest.class,
+      responseType = SessionResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<SessionRequest,
+      SessionResponse> getGetAllHistoryMethod() {
+    io.grpc.MethodDescriptor<SessionRequest, SessionResponse> getGetAllHistoryMethod;
+    if ((getGetAllHistoryMethod = SessionServiceGrpc.getGetAllHistoryMethod) == null) {
+      synchronized (SessionServiceGrpc.class) {
+        if ((getGetAllHistoryMethod = SessionServiceGrpc.getGetAllHistoryMethod) == null) {
+          SessionServiceGrpc.getGetAllHistoryMethod = getGetAllHistoryMethod =
+              io.grpc.MethodDescriptor.<SessionRequest, SessionResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.SessionService", "getAllHistory"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  SessionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  SessionResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SessionServiceMethodDescriptorSupplier("getAllHistory"))
+                  .build();
+          }
+        }
+     }
+     return getGetAllHistoryMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<TopRequest,
+      TopResponse> getGetTopLimitMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "getTopLimit",
+      requestType = TopRequest.class,
+      responseType = TopResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<TopRequest,
+      TopResponse> getGetTopLimitMethod() {
+    io.grpc.MethodDescriptor<TopRequest, TopResponse> getGetTopLimitMethod;
+    if ((getGetTopLimitMethod = SessionServiceGrpc.getGetTopLimitMethod) == null) {
+      synchronized (SessionServiceGrpc.class) {
+        if ((getGetTopLimitMethod = SessionServiceGrpc.getGetTopLimitMethod) == null) {
+          SessionServiceGrpc.getGetTopLimitMethod = getGetTopLimitMethod =
+              io.grpc.MethodDescriptor.<TopRequest, TopResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.SessionService", "getTopLimit"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  TopRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  TopResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SessionServiceMethodDescriptorSupplier("getTopLimit"))
+                  .build();
+          }
+        }
+     }
+     return getGetTopLimitMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<PlayRequest,
+      PlayResponse> getPlayMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "play",
+      requestType = PlayRequest.class,
+      responseType = PlayResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<PlayRequest,
+      PlayResponse> getPlayMethod() {
+    io.grpc.MethodDescriptor<PlayRequest, PlayResponse> getPlayMethod;
+    if ((getPlayMethod = SessionServiceGrpc.getPlayMethod) == null) {
+      synchronized (SessionServiceGrpc.class) {
+        if ((getPlayMethod = SessionServiceGrpc.getPlayMethod) == null) {
+          SessionServiceGrpc.getPlayMethod = getPlayMethod =
+              io.grpc.MethodDescriptor.<PlayRequest, PlayResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.SessionService", "play"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  PlayRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  PlayResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SessionServiceMethodDescriptorSupplier("play"))
+                  .build();
+          }
+        }
+     }
+     return getPlayMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -85,6 +181,27 @@ public final class SessionServiceGrpc {
       asyncUnimplementedUnaryCall(getCreateSessionMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void getAllHistory(SessionRequest request,
+                              io.grpc.stub.StreamObserver<SessionResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetAllHistoryMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void getTopLimit(TopRequest request,
+                            io.grpc.stub.StreamObserver<TopResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetTopLimitMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void play(PlayRequest request,
+                     io.grpc.stub.StreamObserver<PlayResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getPlayMethod(), responseObserver);
+    }
+
     @Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -94,6 +211,27 @@ public final class SessionServiceGrpc {
                 SessionRequest,
                 SessionResponse>(
                   this, METHODID_CREATE_SESSION)))
+          .addMethod(
+            getGetAllHistoryMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                SessionRequest,
+                SessionResponse>(
+                  this, METHODID_GET_ALL_HISTORY)))
+          .addMethod(
+            getGetTopLimitMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                TopRequest,
+                TopResponse>(
+                  this, METHODID_GET_TOP_LIMIT)))
+          .addMethod(
+            getPlayMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                PlayRequest,
+                PlayResponse>(
+                  this, METHODID_PLAY)))
           .build();
     }
   }
@@ -123,6 +261,30 @@ public final class SessionServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getCreateSessionMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void getAllHistory(SessionRequest request,
+                              io.grpc.stub.StreamObserver<SessionResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getGetAllHistoryMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void getTopLimit(TopRequest request,
+                            io.grpc.stub.StreamObserver<TopResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getGetTopLimitMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void play(PlayRequest request,
+                     io.grpc.stub.StreamObserver<PlayResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getPlayMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -148,6 +310,27 @@ public final class SessionServiceGrpc {
     public SessionResponse createSession(SessionRequest request) {
       return blockingUnaryCall(
           getChannel(), getCreateSessionMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public SessionResponse getAllHistory(SessionRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getGetAllHistoryMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public TopResponse getTopLimit(TopRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getGetTopLimitMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public PlayResponse play(PlayRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getPlayMethod(), getCallOptions(), request);
     }
   }
 
@@ -176,9 +359,36 @@ public final class SessionServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getCreateSessionMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<SessionResponse> getAllHistory(
+        SessionRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getGetAllHistoryMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<TopResponse> getTopLimit(
+        TopRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getGetTopLimitMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<PlayResponse> play(
+        PlayRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getPlayMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_CREATE_SESSION = 0;
+  private static final int METHODID_GET_ALL_HISTORY = 1;
+  private static final int METHODID_GET_TOP_LIMIT = 2;
+  private static final int METHODID_PLAY = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -200,6 +410,18 @@ public final class SessionServiceGrpc {
         case METHODID_CREATE_SESSION:
           serviceImpl.createSession((SessionRequest) request,
               (io.grpc.stub.StreamObserver<SessionResponse>) responseObserver);
+          break;
+        case METHODID_GET_ALL_HISTORY:
+          serviceImpl.getAllHistory((SessionRequest) request,
+              (io.grpc.stub.StreamObserver<SessionResponse>) responseObserver);
+          break;
+        case METHODID_GET_TOP_LIMIT:
+          serviceImpl.getTopLimit((TopRequest) request,
+              (io.grpc.stub.StreamObserver<TopResponse>) responseObserver);
+          break;
+        case METHODID_PLAY:
+          serviceImpl.play((PlayRequest) request,
+              (io.grpc.stub.StreamObserver<PlayResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -263,6 +485,9 @@ public final class SessionServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new SessionServiceFileDescriptorSupplier())
               .addMethod(getCreateSessionMethod())
+              .addMethod(getGetAllHistoryMethod())
+              .addMethod(getGetTopLimitMethod())
+              .addMethod(getPlayMethod())
               .build();
         }
       }

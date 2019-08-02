@@ -2,6 +2,8 @@ package vn.zalopay.gitlab.phuctt4.rock.paper.scissors.controller.http;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +27,13 @@ public class SessionController {
     @Autowired
     private SessionService sessionService;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(SessionController.class);
+
     @GetMapping("/sessions")
     public ResponseEntity<?> getAllSession(HttpServletRequest request) {
         String username = (String) request.getAttribute("username");
+
+        LOGGER.info("Request GET /sessions - {}", username);
 
         List<Session> sessions = sessionService.getAllSessionByUser(username);
         List<SessionResponse> sessionResponses = new ArrayList<>();
@@ -41,13 +47,15 @@ public class SessionController {
 
     @GetMapping("/top/{limit}")
     public ResponseEntity<?> getTop(@PathVariable Integer limit) {
+        LOGGER.info("Request GET /top/{}", limit);
         return ResponseEntity.ok(sessionService.getTopUser(limit));
     }
 
     @PostMapping("/sessions")
     public ResponseEntity<?> createSession(HttpServletRequest request) {
-
         String username = (String)request.getAttribute("username");
+
+        LOGGER.info("Request POST /sessions - {}", username);
 
         Session session = new Session();
 
@@ -68,17 +76,20 @@ public class SessionController {
     ) {
         String username = (String)request.getAttribute("username");
 
+        LOGGER.info("Request POST /sessions/{} - {} - type: ", id, username, type);
+
         Session session= sessionService.getSession(username, id);
         JSONObject response = new JSONObject();
 
         if(session != null) {
             if(!(type >= 1 && type <= 3)) {
                 response.put("error", "Wrong type");
+                LOGGER.error("Wrong type {}", type);
                 return ResponseEntity.ok("Wrong type");
             } else {
                 Random random = new Random();
                 Integer computer = random.nextInt(3) + 1;
-                Integer result = checkWin(type, computer);
+                Integer result = sessionService.checkWin(type, computer);
 
                 SessionDetail sessionDetail = new SessionDetail(result, type, session);
                 session.addSessionDetail(sessionDetail);
@@ -91,50 +102,13 @@ public class SessionController {
                     sessionService.updateSessionCache(username, false);
                 }
 
-                response.put("result", getResultToString(result));
+                response.put("result", sessionService.getResultToString(result));
                 return ResponseEntity.ok(response.toMap());
             }
         } else {
             response.put("error", "Session not found or session out of turn");
+            LOGGER.error("Session {} not found or session out of turn", id);
             return ResponseEntity.ok(response.toMap());
-        }
-    }
-
-    private Integer checkWin(Integer player, Integer computer) {
-        if(player == computer) {
-            return 0;
-        } else {
-            Integer result = 0;
-            if(player == 1) {
-                if(computer == 2) {
-                    result = -1;
-                } else {
-                    result = 1;
-                }
-            } else if(player == 2) {
-                if(computer == 3) {
-                    result = -1;
-                } else {
-                    result = 1;
-                }
-            } else {
-                if(computer == 1) {
-                    result = -1;
-                } else {
-                    result = 1;
-                }
-            }
-            return result;
-        }
-    }
-
-    private String getResultToString(Integer result) {
-        if(result == -1) {
-            return "LOSE";
-        } else if(result == 0) {
-            return "DRAW";
-        } else {
-            return "WIN";
         }
     }
 }

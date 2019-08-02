@@ -121,4 +121,42 @@ public class SessionService {
         User user = userRepository.findByUsername(username);
         sessionCacheRepository.updateSessionCache(user, isWinning);
     }
+
+    public Integer checkWin(Integer player, Integer computer) {
+        if(player == computer) {
+            return 0;
+        } else {
+            Integer result = 0;
+            if(player == 1) {
+                if(computer == 2) {
+                    result = -1;
+                } else {
+                    result = 1;
+                }
+            } else if(player == 2) {
+                if(computer == 3) {
+                    result = -1;
+                } else {
+                    result = 1;
+                }
+            } else {
+                if(computer == 1) {
+                    result = -1;
+                } else {
+                    result = 1;
+                }
+            }
+            return result;
+        }
+    }
+
+    public String getResultToString(Integer result) {
+        if(result == -1) {
+            return "LOSE";
+        } else if(result == 0) {
+            return "DRAW";
+        } else {
+            return "WIN";
+        }
+    }
 }
