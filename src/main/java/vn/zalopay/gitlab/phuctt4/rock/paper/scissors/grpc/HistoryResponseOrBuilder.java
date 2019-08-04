@@ -8,41 +8,26 @@ public interface HistoryResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int64 id = 1;</code>
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
    */
-  long getId();
-
+  java.util.List<HistoryDataResponse>
+      getDataList();
   /**
-   * <code>string createdOn = 2;</code>
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
    */
-  String getCreatedOn();
+  HistoryDataResponse getData(int index);
   /**
-   * <code>string createdOn = 2;</code>
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
    */
-  com.google.protobuf.ByteString
-      getCreatedOnBytes();
-
+  int getDataCount();
   /**
-   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
    */
-  java.util.List<HistoryDetailResponse>
-      getHistoryDetailResponseList();
+  java.util.List<? extends HistoryDataResponseOrBuilder>
+      getDataOrBuilderList();
   /**
-   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
    */
-  HistoryDetailResponse getHistoryDetailResponse(int index);
-  /**
-   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
-   */
-  int getHistoryDetailResponseCount();
-  /**
-   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
-   */
-  java.util.List<? extends HistoryDetailResponseOrBuilder>
-      getHistoryDetailResponseOrBuilderList();
-  /**
-   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
-   */
-  HistoryDetailResponseOrBuilder getHistoryDetailResponseOrBuilder(
+  HistoryDataResponseOrBuilder getDataOrBuilder(
           int index);
 }

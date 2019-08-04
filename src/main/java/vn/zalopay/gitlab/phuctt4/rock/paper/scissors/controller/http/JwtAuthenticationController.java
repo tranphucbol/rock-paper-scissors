@@ -10,7 +10,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.dto.ErrorResponse;
+import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.dto.DataResponse;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.dto.JwtResponse;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.dto.UserLoginForm;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.jwt.JwtTokenUtil;
@@ -41,7 +41,9 @@ public class JwtAuthenticationController {
         } catch (Exception e) {
             String message = userLoginForm.getUsername() + " " + e.getMessage();
             LOGGER.error(message);
-            return ResponseEntity.ok(new ErrorResponse(message));
+            DataResponse dataResponse = new DataResponse();
+            dataResponse.setError("Wrong username or password");
+            return ResponseEntity.ok(dataResponse);
         }
 
     }

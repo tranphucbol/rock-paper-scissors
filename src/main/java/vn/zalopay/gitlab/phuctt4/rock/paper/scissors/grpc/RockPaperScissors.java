@@ -45,6 +45,11 @@ public final class RockPaperScissors {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_HistoryDetailResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_HistoryDataResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_HistoryDataResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_HistoryResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -64,6 +69,11 @@ public final class RockPaperScissors {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_TopRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_TopDataResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_TopDataResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_TopResponse_descriptor;
   static final 
@@ -85,38 +95,43 @@ public final class RockPaperScissors {
       "\t\022\020\n\010password\030\002 \001(\t\"\035\n\014UserResponse\022\r\n\005t" +
       "oken\030\001 \001(\t\"\020\n\016HistoryRequest\"5\n\025HistoryD" +
       "etailResponse\022\014\n\004type\030\001 \001(\005\022\016\n\006result\030\002 " +
-      "\001(\005\"\232\001\n\017HistoryResponse\022\n\n\002id\030\001 \001(\003\022\021\n\tc" +
-      "reatedOn\030\002 \001(\t\022h\n\025historyDetailResponse\030" +
-      "\003 \003(\0132I.vn.zalopay.gitlab.phuctt4.rock.p" +
-      "aper.scissors.grpc.HistoryDetailResponse" +
-      "\"\'\n\013PlayRequest\022\n\n\002id\030\001 \001(\003\022\014\n\004type\030\002 \001(" +
-      "\005\"\036\n\014PlayResponse\022\016\n\006result\030\001 \001(\t\"\033\n\nTop" +
-      "Request\022\r\n\005limit\030\001 \001(\005\"-\n\013TopResponse\022\020\n" +
-      "\010username\030\001 \001(\t\022\014\n\004rate\030\002 \001(\0012\343\004\n\016Sessio" +
-      "nService\022\230\001\n\rcreateSession\022B.vn.zalopay." +
-      "gitlab.phuctt4.rock.paper.scissors.grpc." +
-      "SessionRequest\032C.vn.zalopay.gitlab.phuct" +
-      "t4.rock.paper.scissors.grpc.SessionRespo" +
-      "nse\022\230\001\n\rgetAllHistory\022B.vn.zalopay.gitla" +
-      "b.phuctt4.rock.paper.scissors.grpc.Sessi" +
-      "onRequest\032C.vn.zalopay.gitlab.phuctt4.ro" +
-      "ck.paper.scissors.grpc.SessionResponse\022\216" +
-      "\001\n\013getTopLimit\022>.vn.zalopay.gitlab.phuct" +
-      "t4.rock.paper.scissors.grpc.TopRequest\032?" +
+      "\001(\005\"\236\001\n\023HistoryDataResponse\022\n\n\002id\030\001 \001(\003\022" +
+      "\021\n\tcreatedOn\030\002 \001(\t\022h\n\025historyDetailRespo" +
+      "nse\030\003 \003(\0132I.vn.zalopay.gitlab.phuctt4.ro" +
+      "ck.paper.scissors.grpc.HistoryDetailResp" +
+      "onse\"h\n\017HistoryResponse\022U\n\004data\030\001 \003(\0132G." +
+      "vn.zalopay.gitlab.phuctt4.rock.paper.sci" +
+      "ssors.grpc.HistoryDataResponse\"\'\n\013PlayRe" +
+      "quest\022\n\n\002id\030\001 \001(\003\022\014\n\004type\030\002 \001(\005\"\036\n\014PlayR" +
+      "esponse\022\016\n\006result\030\001 \001(\t\"\033\n\nTopRequest\022\r\n" +
+      "\005limit\030\001 \001(\005\"1\n\017TopDataResponse\022\020\n\010usern" +
+      "ame\030\001 \001(\t\022\014\n\004rate\030\002 \001(\001\"`\n\013TopResponse\022Q" +
+      "\n\004data\030\001 \003(\0132C.vn.zalopay.gitlab.phuctt4" +
+      ".rock.paper.scissors.grpc.TopDataRespons" +
+      "e2\343\004\n\016SessionService\022\230\001\n\rcreateSession\022B" +
       ".vn.zalopay.gitlab.phuctt4.rock.paper.sc" +
-      "issors.grpc.TopResponse\022\211\001\n\004play\022?.vn.za" +
-      "lopay.gitlab.phuctt4.rock.paper.scissors" +
-      ".grpc.PlayRequest\032@.vn.zalopay.gitlab.ph" +
-      "uctt4.rock.paper.scissors.grpc.PlayRespo" +
-      "nse2\241\001\n\017RegisterService\022\215\001\n\010register\022?.v" +
-      "n.zalopay.gitlab.phuctt4.rock.paper.scis" +
-      "sors.grpc.UserRequest\032@.vn.zalopay.gitla" +
-      "b.phuctt4.rock.paper.scissors.grpc.UserR" +
-      "esponse2\231\001\n\013AuthService\022\211\001\n\004auth\022?.vn.za" +
-      "lopay.gitlab.phuctt4.rock.paper.scissors" +
-      ".grpc.UserRequest\032@.vn.zalopay.gitlab.ph" +
-      "uctt4.rock.paper.scissors.grpc.UserRespo" +
-      "nseB\002P\001b\006proto3"
+      "issors.grpc.SessionRequest\032C.vn.zalopay." +
+      "gitlab.phuctt4.rock.paper.scissors.grpc." +
+      "SessionResponse\022\230\001\n\rgetAllHistory\022B.vn.z" +
+      "alopay.gitlab.phuctt4.rock.paper.scissor" +
+      "s.grpc.HistoryRequest\032C.vn.zalopay.gitla" +
+      "b.phuctt4.rock.paper.scissors.grpc.Histo" +
+      "ryResponse\022\216\001\n\013getTopLimit\022>.vn.zalopay." +
+      "gitlab.phuctt4.rock.paper.scissors.grpc." +
+      "TopRequest\032?.vn.zalopay.gitlab.phuctt4.r" +
+      "ock.paper.scissors.grpc.TopResponse\022\211\001\n\004" +
+      "play\022?.vn.zalopay.gitlab.phuctt4.rock.pa" +
+      "per.scissors.grpc.PlayRequest\032@.vn.zalop" +
+      "ay.gitlab.phuctt4.rock.paper.scissors.gr" +
+      "pc.PlayResponse2\241\001\n\017RegisterService\022\215\001\n\010" +
+      "register\022?.vn.zalopay.gitlab.phuctt4.roc" +
+      "k.paper.scissors.grpc.UserRequest\032@.vn.z" +
+      "alopay.gitlab.phuctt4.rock.paper.scissor" +
+      "s.grpc.UserResponse2\231\001\n\013AuthService\022\211\001\n\004" +
+      "auth\022?.vn.zalopay.gitlab.phuctt4.rock.pa" +
+      "per.scissors.grpc.UserRequest\032@.vn.zalop" +
+      "ay.gitlab.phuctt4.rock.paper.scissors.gr" +
+      "pc.UserResponseB\002P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -166,36 +181,48 @@ public final class RockPaperScissors {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_HistoryDetailResponse_descriptor,
         new String[] { "Type", "Result", });
-    internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_HistoryResponse_descriptor =
+    internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_HistoryDataResponse_descriptor =
       getDescriptor().getMessageTypes().get(6);
+    internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_HistoryDataResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_HistoryDataResponse_descriptor,
+        new String[] { "Id", "CreatedOn", "HistoryDetailResponse", });
+    internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_HistoryResponse_descriptor =
+      getDescriptor().getMessageTypes().get(7);
     internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_HistoryResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_HistoryResponse_descriptor,
-        new String[] { "Id", "CreatedOn", "HistoryDetailResponse", });
+        new String[] { "Data", });
     internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_PlayRequest_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_PlayRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_PlayRequest_descriptor,
         new String[] { "Id", "Type", });
     internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_PlayResponse_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_PlayResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_PlayResponse_descriptor,
         new String[] { "Result", });
     internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_TopRequest_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_TopRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_TopRequest_descriptor,
         new String[] { "Limit", });
+    internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_TopDataResponse_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_TopDataResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_TopDataResponse_descriptor,
+        new String[] { "Username", "Rate", });
     internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_TopResponse_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_TopResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_TopResponse_descriptor,
-        new String[] { "Username", "Rate", });
+        new String[] { "Data", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

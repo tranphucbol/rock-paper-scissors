@@ -1,22 +1,28 @@
 package vn.zalopay.gitlab.phuctt4.rock.paper.scissors.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.stereotype.Service;
-import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.dto.SessionPlay;
+import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.dto.DataResponse;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.dto.UserWinning;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.Session;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.SessionCache;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.SessionDetail;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.User;
-import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.repository.SessionCacheRepository;
-import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.repository.SessionDetailRepository;
-import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.repository.SessionRepository;
-import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.repository.UserRepository;
+import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.repository.*;
 
+import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,6 +40,21 @@ public class SessionService {
     @Autowired
     private SessionCacheRepository sessionCacheRepository;
 
+    @Autowired
+    private UserWinningCacheRepository userWinningCacheRepository;
+
+    @PostConstruct
+    @Transactional
+    private void init() {
+        List<User> users = userRepository.findAll();
+        List<UserWinning> userWinnings = users.stream()
+                .map(user -> new UserWinning(user.getUsername(), getWinningRateOfUser(user)))
+                .collect(Collectors.toList());
+        userWinnings.forEach(userWinning -> userWinningCacheRepository.addUserWinning(userWinning));
+    }
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SessionService.class);
+
     public void createSession(String username, Session session) {
         User user = userRepository.findByUsername(username);
         session.setUser(user);
@@ -44,35 +65,14 @@ public class SessionService {
         User user = userRepository.findByUsername(username);
 
         Session session = sessionRepository.findByIdAndUserId(sessionId, user.getId());
-        if(session != null && generalResult(session) != 0) {
+        if (session != null && generalResult(session) != 0) {
             session = null;
         }
         return session;
     }
 
     public Integer generalResult(Session session) {
-//        int countWin = 0;
-//        int countLose = 0;
-
-//        for(SessionDetail sd : session.getSessionDetails()) {
-//            if(sd.getResult() == -1)
-//                countLose++;
-//            else if(sd.getResult() == 1)
-//                countWin++;
-//        }
-
-//        int countWin = sessionDetailRepository.countBySessionIdAndResult(session.getId(), 1);
-//        int countLose = sessionDetailRepository.countBySessionIdAndResult(session.getId(), -1);
-
-//        if(countLose >  0) {
-//            return -1;
-//        } else if(countWin > 0) {
-//            return 1;
-//        } else {
-//            return 0;
-//        }
-        int size = session.getSessionDetails().size();
-        return size > 0 ? session.getSessionDetails().get(size - 1).getResult() : 0;
+        return session.getResult();
     }
 
     public void save(Session session) {
@@ -89,15 +89,16 @@ public class SessionService {
     public Double getWinningRateOfUser(User user) {
         SessionCache sessionCache = sessionCacheRepository.getSessionCache(user.getId());
         Integer win = 0, count = 0;
-        if(sessionCache == null) {
-            List<Session> sessions = user.getSessions();
-
-            for(Session session : sessions) {
-                if(generalResult(session) == 1) {
-                    win++;
-                }
-            }
-            count = sessions.size();
+        if (sessionCache == null) {
+//            List<Session> sessions = user.getSessions();
+//            for (Session session : sessions) {
+//                if (generalResult(session) == 1) {
+//                    win++;
+//                }
+//            }
+//            count = sessions.size();
+            count = sessionRepository.countByUserId(user.getId());
+            win = sessionRepository.countByResultAndUserId(1, user.getId());
             sessionCache = new SessionCache(user.getId(), user.getUsername(), win, count);
             sessionCacheRepository.addSessionCache(sessionCache);
         } else {
@@ -107,40 +108,45 @@ public class SessionService {
         return count > 0 ? win * 1.0 / count : 0;
     }
 
+    @Transactional
     public List<UserWinning> getTopUser(Integer limit) {
-        List<User> users = userRepository.findAll();
-
-        return users.stream()
-                .map(user -> new UserWinning(user.getUsername(), getWinningRateOfUser(user)))
-                .sorted((a, b) -> b.getRate().compareTo(a.getRate()))
-                .limit(limit)
-                .collect(Collectors.toList());
+//        List<User> users = userRepository.findAll();
+//        List<UserWinning> userWinnings = users.stream()
+//                .map(user -> new UserWinning(user.getUsername(), getWinningRateOfUser(user)))
+//                .sorted((a, b) -> b.getRate().compareTo(a.getRate()))
+//                .limit(limit)
+//                .collect(Collectors.toList());
+        List<UserWinning> userWinnings = userWinningCacheRepository
+                .getByLimit(limit);
+        return userWinnings;
     }
 
     public void updateSessionCache(String username, Boolean isWinning) {
         User user = userRepository.findByUsername(username);
         sessionCacheRepository.updateSessionCache(user, isWinning);
+        userWinningCacheRepository.addUserWinning(new UserWinning(username, getWinningRateOfUser(user)));
+//        return new UserWinning(username, getWinningRateOfUser(user));
     }
 
     public Integer checkWin(Integer player, Integer computer) {
-        if(player == computer) {
+        if (player == computer) {
             return 0;
         } else {
             Integer result = 0;
-            if(player == 1) {
-                if(computer == 2) {
+            if (player == 1) {
+                if (computer == 2) {
                     result = -1;
                 } else {
                     result = 1;
                 }
-            } else if(player == 2) {
-                if(computer == 3) {
+            } else if (player == 2) {
+                if (computer == 3) {
                     result = -1;
                 } else {
                     result = 1;
                 }
             } else {
-                if(computer == 1) {
+                if (computer == 1) {
                     result = -1;
                 } else {
                     result = 1;
@@ -151,12 +157,47 @@ public class SessionService {
     }
 
     public String getResultToString(Integer result) {
-        if(result == -1) {
+        if (result == -1) {
             return "LOSE";
-        } else if(result == 0) {
+        } else if (result == 0) {
             return "DRAW";
         } else {
             return "WIN";
         }
+    }
+
+    @Transactional
+    public DataResponse play(String username, Long id, Integer type) {
+        Session session = getSession(username, id);
+        DataResponse dataResponse = new DataResponse();
+
+        if (session != null) {
+            if (!(type >= 1 && type <= 3)) {
+                dataResponse.setError("Wrong type");
+                LOGGER.error("Wrong type {}", type);
+            } else {
+                Random random = new Random();
+                Integer computer = random.nextInt(3) + 1;
+                Integer result = checkWin(type, computer);
+
+                SessionDetail sessionDetail = new SessionDetail(result, type, session);
+                session.addSessionDetail(sessionDetail);
+
+                if (result == 1) {
+                    updateSessionCache(username, true);
+                    session.setResult(1);
+
+                } else if (result == -1) {
+                    updateSessionCache(username, false);
+                    session.setResult(-1);
+                }
+                dataResponse.setResult(getResultToString(result));
+                save(session);
+            }
+        } else {
+            dataResponse.setError("Session not found or session out of turn");
+            LOGGER.error("Session {} not found or session out of turn", id);
+        }
+        return dataResponse;
     }
 }

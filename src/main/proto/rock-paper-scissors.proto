@@ -29,10 +29,14 @@ message HistoryDetailResponse {
     int32 result = 2;
 }
 
-message HistoryResponse {
+message HistoryDataResponse {
     int64 id = 1;
     string createdOn = 2;
     repeated HistoryDetailResponse historyDetailResponse = 3;
+}
+
+message HistoryResponse {
+    repeated HistoryDataResponse data = 1;
 }
 
 message PlayRequest {
@@ -48,14 +52,18 @@ message TopRequest {
     int32 limit = 1;
 }
 
-message TopResponse {
+message TopDataResponse {
     string username = 1;
     double rate = 2;
 }
 
+message TopResponse {
+    repeated TopDataResponse data = 1;
+}
+
 service SessionService {
     rpc createSession(SessionRequest) returns (SessionResponse);
-    rpc getAllHistory(SessionRequest) returns (SessionResponse);
+    rpc getAllHistory(HistoryRequest) returns (HistoryResponse);
     rpc getTopLimit(TopRequest) returns (TopResponse);
     rpc play(PlayRequest) returns (PlayResponse);
 }

@@ -77,7 +77,7 @@ private static final long serialVersionUID = 0L;
       internalGetFieldAccessorTable() {
     return RockPaperScissors.internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_PlayResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            PlayResponse.class, PlayResponse.Builder.class);
+            PlayResponse.class, Builder.class);
   }
 
   public static final int RESULT_FIELD_NUMBER = 1;
@@ -90,7 +90,7 @@ private static final long serialVersionUID = 0L;
     if (ref instanceof String) {
       return (String) ref;
     } else {
-      com.google.protobuf.ByteString bs =
+      com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       result_ = s;
@@ -104,7 +104,7 @@ private static final long serialVersionUID = 0L;
       getResultBytes() {
     Object ref = result_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b =
+      com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (String) ref);
       result_ = b;
@@ -280,7 +280,7 @@ private static final long serialVersionUID = 0L;
         internalGetFieldAccessorTable() {
       return RockPaperScissors.internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_PlayResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              PlayResponse.class, PlayResponse.Builder.class);
+              PlayResponse.class, Builder.class);
     }
 
     // Construct using vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.PlayResponse.newBuilder()
@@ -420,7 +420,7 @@ private static final long serialVersionUID = 0L;
         getResultBytes() {
       Object ref = result_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
         result_ = b;
@@ -437,7 +437,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) {
     throw new NullPointerException();
   }
-
+  
       result_ = value;
       onChanged();
       return this;
@@ -446,7 +446,7 @@ private static final long serialVersionUID = 0L;
      * <code>string result = 1;</code>
      */
     public Builder clearResult() {
-
+      
       result_ = getDefaultInstance().getResult();
       onChanged();
       return this;
@@ -460,7 +460,7 @@ private static final long serialVersionUID = 0L;
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+      
       result_ = value;
       onChanged();
       return this;

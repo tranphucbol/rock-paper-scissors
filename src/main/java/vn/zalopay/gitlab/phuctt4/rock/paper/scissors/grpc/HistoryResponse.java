@@ -16,9 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private HistoryResponse() {
-    id_ = 0L;
-    createdOn_ = "";
-    historyDetailResponse_ = java.util.Collections.emptyList();
+    data_ = java.util.Collections.emptyList();
   }
 
   @Override
@@ -52,24 +50,13 @@ private static final long serialVersionUID = 0L;
             }
             break;
           }
-          case 8: {
-
-            id_ = input.readInt64();
-            break;
-          }
-          case 18: {
-            String s = input.readStringRequireUtf8();
-
-            createdOn_ = s;
-            break;
-          }
-          case 26: {
-            if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-              historyDetailResponse_ = new java.util.ArrayList<HistoryDetailResponse>();
-              mutable_bitField0_ |= 0x00000004;
+          case 10: {
+            if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              data_ = new java.util.ArrayList<HistoryDataResponse>();
+              mutable_bitField0_ |= 0x00000001;
             }
-            historyDetailResponse_.add(
-                input.readMessage(HistoryDetailResponse.parser(), extensionRegistry));
+            data_.add(
+                input.readMessage(HistoryDataResponse.parser(), extensionRegistry));
             break;
           }
         }
@@ -80,8 +67,8 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
-      if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-        historyDetailResponse_ = java.util.Collections.unmodifiableList(historyDetailResponse_);
+      if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        data_ = java.util.Collections.unmodifiableList(data_);
       }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
@@ -96,86 +83,42 @@ private static final long serialVersionUID = 0L;
       internalGetFieldAccessorTable() {
     return RockPaperScissors.internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_HistoryResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            HistoryResponse.class, HistoryResponse.Builder.class);
+            HistoryResponse.class, Builder.class);
   }
 
-  private int bitField0_;
-  public static final int ID_FIELD_NUMBER = 1;
-  private long id_;
+  public static final int DATA_FIELD_NUMBER = 1;
+  private java.util.List<HistoryDataResponse> data_;
   /**
-   * <code>int64 id = 1;</code>
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
    */
-  public long getId() {
-    return id_;
-  }
-
-  public static final int CREATEDON_FIELD_NUMBER = 2;
-  private volatile Object createdOn_;
-  /**
-   * <code>string createdOn = 2;</code>
-   */
-  public String getCreatedOn() {
-    Object ref = createdOn_;
-    if (ref instanceof String) {
-      return (String) ref;
-    } else {
-      com.google.protobuf.ByteString bs =
-          (com.google.protobuf.ByteString) ref;
-      String s = bs.toStringUtf8();
-      createdOn_ = s;
-      return s;
-    }
+  public java.util.List<HistoryDataResponse> getDataList() {
+    return data_;
   }
   /**
-   * <code>string createdOn = 2;</code>
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
    */
-  public com.google.protobuf.ByteString
-      getCreatedOnBytes() {
-    Object ref = createdOn_;
-    if (ref instanceof String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (String) ref);
-      createdOn_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int HISTORYDETAILRESPONSE_FIELD_NUMBER = 3;
-  private java.util.List<HistoryDetailResponse> historyDetailResponse_;
-  /**
-   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
-   */
-  public java.util.List<HistoryDetailResponse> getHistoryDetailResponseList() {
-    return historyDetailResponse_;
+  public java.util.List<? extends HistoryDataResponseOrBuilder>
+      getDataOrBuilderList() {
+    return data_;
   }
   /**
-   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
    */
-  public java.util.List<? extends HistoryDetailResponseOrBuilder>
-      getHistoryDetailResponseOrBuilderList() {
-    return historyDetailResponse_;
+  public int getDataCount() {
+    return data_.size();
   }
   /**
-   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
    */
-  public int getHistoryDetailResponseCount() {
-    return historyDetailResponse_.size();
+  public HistoryDataResponse getData(int index) {
+    return data_.get(index);
   }
   /**
-   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
    */
-  public HistoryDetailResponse getHistoryDetailResponse(int index) {
-    return historyDetailResponse_.get(index);
-  }
-  /**
-   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
-   */
-  public HistoryDetailResponseOrBuilder getHistoryDetailResponseOrBuilder(
+  public HistoryDataResponseOrBuilder getDataOrBuilder(
       int index) {
-    return historyDetailResponse_.get(index);
+    return data_.get(index);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -190,14 +133,8 @@ private static final long serialVersionUID = 0L;
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (id_ != 0L) {
-      output.writeInt64(1, id_);
-    }
-    if (!getCreatedOnBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, createdOn_);
-    }
-    for (int i = 0; i < historyDetailResponse_.size(); i++) {
-      output.writeMessage(3, historyDetailResponse_.get(i));
+    for (int i = 0; i < data_.size(); i++) {
+      output.writeMessage(1, data_.get(i));
     }
     unknownFields.writeTo(output);
   }
@@ -207,16 +144,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (id_ != 0L) {
+    for (int i = 0; i < data_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(1, id_);
-    }
-    if (!getCreatedOnBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, createdOn_);
-    }
-    for (int i = 0; i < historyDetailResponse_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, historyDetailResponse_.get(i));
+        .computeMessageSize(1, data_.get(i));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -234,12 +164,8 @@ private static final long serialVersionUID = 0L;
     HistoryResponse other = (HistoryResponse) obj;
 
     boolean result = true;
-    result = result && (getId()
-        == other.getId());
-    result = result && getCreatedOn()
-        .equals(other.getCreatedOn());
-    result = result && getHistoryDetailResponseList()
-        .equals(other.getHistoryDetailResponseList());
+    result = result && getDataList()
+        .equals(other.getDataList());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -251,14 +177,9 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + ID_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        getId());
-    hash = (37 * hash) + CREATEDON_FIELD_NUMBER;
-    hash = (53 * hash) + getCreatedOn().hashCode();
-    if (getHistoryDetailResponseCount() > 0) {
-      hash = (37 * hash) + HISTORYDETAILRESPONSE_FIELD_NUMBER;
-      hash = (53 * hash) + getHistoryDetailResponseList().hashCode();
+    if (getDataCount() > 0) {
+      hash = (37 * hash) + DATA_FIELD_NUMBER;
+      hash = (53 * hash) + getDataList().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -369,7 +290,7 @@ private static final long serialVersionUID = 0L;
         internalGetFieldAccessorTable() {
       return RockPaperScissors.internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_HistoryResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              HistoryResponse.class, HistoryResponse.Builder.class);
+              HistoryResponse.class, Builder.class);
     }
 
     // Construct using vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryResponse.newBuilder()
@@ -385,20 +306,16 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
-        getHistoryDetailResponseFieldBuilder();
+        getDataFieldBuilder();
       }
     }
     public Builder clear() {
       super.clear();
-      id_ = 0L;
-
-      createdOn_ = "";
-
-      if (historyDetailResponseBuilder_ == null) {
-        historyDetailResponse_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000004);
+      if (dataBuilder_ == null) {
+        data_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
       } else {
-        historyDetailResponseBuilder_.clear();
+        dataBuilder_.clear();
       }
       return this;
     }
@@ -423,19 +340,15 @@ private static final long serialVersionUID = 0L;
     public HistoryResponse buildPartial() {
       HistoryResponse result = new HistoryResponse(this);
       int from_bitField0_ = bitField0_;
-      int to_bitField0_ = 0;
-      result.id_ = id_;
-      result.createdOn_ = createdOn_;
-      if (historyDetailResponseBuilder_ == null) {
-        if (((bitField0_ & 0x00000004) == 0x00000004)) {
-          historyDetailResponse_ = java.util.Collections.unmodifiableList(historyDetailResponse_);
-          bitField0_ = (bitField0_ & ~0x00000004);
+      if (dataBuilder_ == null) {
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          data_ = java.util.Collections.unmodifiableList(data_);
+          bitField0_ = (bitField0_ & ~0x00000001);
         }
-        result.historyDetailResponse_ = historyDetailResponse_;
+        result.data_ = data_;
       } else {
-        result.historyDetailResponse_ = historyDetailResponseBuilder_.build();
+        result.data_ = dataBuilder_.build();
       }
-      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -477,36 +390,29 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(HistoryResponse other) {
       if (other == HistoryResponse.getDefaultInstance()) return this;
-      if (other.getId() != 0L) {
-        setId(other.getId());
-      }
-      if (!other.getCreatedOn().isEmpty()) {
-        createdOn_ = other.createdOn_;
-        onChanged();
-      }
-      if (historyDetailResponseBuilder_ == null) {
-        if (!other.historyDetailResponse_.isEmpty()) {
-          if (historyDetailResponse_.isEmpty()) {
-            historyDetailResponse_ = other.historyDetailResponse_;
-            bitField0_ = (bitField0_ & ~0x00000004);
+      if (dataBuilder_ == null) {
+        if (!other.data_.isEmpty()) {
+          if (data_.isEmpty()) {
+            data_ = other.data_;
+            bitField0_ = (bitField0_ & ~0x00000001);
           } else {
-            ensureHistoryDetailResponseIsMutable();
-            historyDetailResponse_.addAll(other.historyDetailResponse_);
+            ensureDataIsMutable();
+            data_.addAll(other.data_);
           }
           onChanged();
         }
       } else {
-        if (!other.historyDetailResponse_.isEmpty()) {
-          if (historyDetailResponseBuilder_.isEmpty()) {
-            historyDetailResponseBuilder_.dispose();
-            historyDetailResponseBuilder_ = null;
-            historyDetailResponse_ = other.historyDetailResponse_;
-            bitField0_ = (bitField0_ & ~0x00000004);
-            historyDetailResponseBuilder_ =
+        if (!other.data_.isEmpty()) {
+          if (dataBuilder_.isEmpty()) {
+            dataBuilder_.dispose();
+            dataBuilder_ = null;
+            data_ = other.data_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+            dataBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getHistoryDetailResponseFieldBuilder() : null;
+                 getDataFieldBuilder() : null;
           } else {
-            historyDetailResponseBuilder_.addAllMessages(other.historyDetailResponse_);
+            dataBuilder_.addAllMessages(other.data_);
           }
         }
       }
@@ -538,339 +444,244 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private long id_ ;
-    /**
-     * <code>int64 id = 1;</code>
-     */
-    public long getId() {
-      return id_;
-    }
-    /**
-     * <code>int64 id = 1;</code>
-     */
-    public Builder setId(long value) {
-
-      id_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>int64 id = 1;</code>
-     */
-    public Builder clearId() {
-
-      id_ = 0L;
-      onChanged();
-      return this;
-    }
-
-    private Object createdOn_ = "";
-    /**
-     * <code>string createdOn = 2;</code>
-     */
-    public String getCreatedOn() {
-      Object ref = createdOn_;
-      if (!(ref instanceof String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        createdOn_ = s;
-        return s;
-      } else {
-        return (String) ref;
-      }
-    }
-    /**
-     * <code>string createdOn = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getCreatedOnBytes() {
-      Object ref = createdOn_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        createdOn_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string createdOn = 2;</code>
-     */
-    public Builder setCreatedOn(
-        String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-
-      createdOn_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string createdOn = 2;</code>
-     */
-    public Builder clearCreatedOn() {
-
-      createdOn_ = getDefaultInstance().getCreatedOn();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string createdOn = 2;</code>
-     */
-    public Builder setCreatedOnBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-
-      createdOn_ = value;
-      onChanged();
-      return this;
-    }
-
-    private java.util.List<HistoryDetailResponse> historyDetailResponse_ =
+    private java.util.List<HistoryDataResponse> data_ =
       java.util.Collections.emptyList();
-    private void ensureHistoryDetailResponseIsMutable() {
-      if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-        historyDetailResponse_ = new java.util.ArrayList<HistoryDetailResponse>(historyDetailResponse_);
-        bitField0_ |= 0x00000004;
+    private void ensureDataIsMutable() {
+      if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        data_ = new java.util.ArrayList<HistoryDataResponse>(data_);
+        bitField0_ |= 0x00000001;
        }
     }
 
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        HistoryDetailResponse, HistoryDetailResponse.Builder, HistoryDetailResponseOrBuilder> historyDetailResponseBuilder_;
+        HistoryDataResponse, HistoryDataResponse.Builder, HistoryDataResponseOrBuilder> dataBuilder_;
 
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public java.util.List<HistoryDetailResponse> getHistoryDetailResponseList() {
-      if (historyDetailResponseBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(historyDetailResponse_);
+    public java.util.List<HistoryDataResponse> getDataList() {
+      if (dataBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(data_);
       } else {
-        return historyDetailResponseBuilder_.getMessageList();
+        return dataBuilder_.getMessageList();
       }
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public int getHistoryDetailResponseCount() {
-      if (historyDetailResponseBuilder_ == null) {
-        return historyDetailResponse_.size();
+    public int getDataCount() {
+      if (dataBuilder_ == null) {
+        return data_.size();
       } else {
-        return historyDetailResponseBuilder_.getCount();
+        return dataBuilder_.getCount();
       }
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public HistoryDetailResponse getHistoryDetailResponse(int index) {
-      if (historyDetailResponseBuilder_ == null) {
-        return historyDetailResponse_.get(index);
+    public HistoryDataResponse getData(int index) {
+      if (dataBuilder_ == null) {
+        return data_.get(index);
       } else {
-        return historyDetailResponseBuilder_.getMessage(index);
+        return dataBuilder_.getMessage(index);
       }
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public Builder setHistoryDetailResponse(
-        int index, HistoryDetailResponse value) {
-      if (historyDetailResponseBuilder_ == null) {
+    public Builder setData(
+        int index, HistoryDataResponse value) {
+      if (dataBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        ensureHistoryDetailResponseIsMutable();
-        historyDetailResponse_.set(index, value);
+        ensureDataIsMutable();
+        data_.set(index, value);
         onChanged();
       } else {
-        historyDetailResponseBuilder_.setMessage(index, value);
+        dataBuilder_.setMessage(index, value);
       }
       return this;
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public Builder setHistoryDetailResponse(
-        int index, HistoryDetailResponse.Builder builderForValue) {
-      if (historyDetailResponseBuilder_ == null) {
-        ensureHistoryDetailResponseIsMutable();
-        historyDetailResponse_.set(index, builderForValue.build());
+    public Builder setData(
+        int index, HistoryDataResponse.Builder builderForValue) {
+      if (dataBuilder_ == null) {
+        ensureDataIsMutable();
+        data_.set(index, builderForValue.build());
         onChanged();
       } else {
-        historyDetailResponseBuilder_.setMessage(index, builderForValue.build());
+        dataBuilder_.setMessage(index, builderForValue.build());
       }
       return this;
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public Builder addHistoryDetailResponse(HistoryDetailResponse value) {
-      if (historyDetailResponseBuilder_ == null) {
+    public Builder addData(HistoryDataResponse value) {
+      if (dataBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        ensureHistoryDetailResponseIsMutable();
-        historyDetailResponse_.add(value);
+        ensureDataIsMutable();
+        data_.add(value);
         onChanged();
       } else {
-        historyDetailResponseBuilder_.addMessage(value);
+        dataBuilder_.addMessage(value);
       }
       return this;
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public Builder addHistoryDetailResponse(
-        int index, HistoryDetailResponse value) {
-      if (historyDetailResponseBuilder_ == null) {
+    public Builder addData(
+        int index, HistoryDataResponse value) {
+      if (dataBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        ensureHistoryDetailResponseIsMutable();
-        historyDetailResponse_.add(index, value);
+        ensureDataIsMutable();
+        data_.add(index, value);
         onChanged();
       } else {
-        historyDetailResponseBuilder_.addMessage(index, value);
+        dataBuilder_.addMessage(index, value);
       }
       return this;
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public Builder addHistoryDetailResponse(
-        HistoryDetailResponse.Builder builderForValue) {
-      if (historyDetailResponseBuilder_ == null) {
-        ensureHistoryDetailResponseIsMutable();
-        historyDetailResponse_.add(builderForValue.build());
+    public Builder addData(
+        HistoryDataResponse.Builder builderForValue) {
+      if (dataBuilder_ == null) {
+        ensureDataIsMutable();
+        data_.add(builderForValue.build());
         onChanged();
       } else {
-        historyDetailResponseBuilder_.addMessage(builderForValue.build());
+        dataBuilder_.addMessage(builderForValue.build());
       }
       return this;
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public Builder addHistoryDetailResponse(
-        int index, HistoryDetailResponse.Builder builderForValue) {
-      if (historyDetailResponseBuilder_ == null) {
-        ensureHistoryDetailResponseIsMutable();
-        historyDetailResponse_.add(index, builderForValue.build());
+    public Builder addData(
+        int index, HistoryDataResponse.Builder builderForValue) {
+      if (dataBuilder_ == null) {
+        ensureDataIsMutable();
+        data_.add(index, builderForValue.build());
         onChanged();
       } else {
-        historyDetailResponseBuilder_.addMessage(index, builderForValue.build());
+        dataBuilder_.addMessage(index, builderForValue.build());
       }
       return this;
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public Builder addAllHistoryDetailResponse(
-        Iterable<? extends HistoryDetailResponse> values) {
-      if (historyDetailResponseBuilder_ == null) {
-        ensureHistoryDetailResponseIsMutable();
+    public Builder addAllData(
+        Iterable<? extends HistoryDataResponse> values) {
+      if (dataBuilder_ == null) {
+        ensureDataIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, historyDetailResponse_);
+            values, data_);
         onChanged();
       } else {
-        historyDetailResponseBuilder_.addAllMessages(values);
+        dataBuilder_.addAllMessages(values);
       }
       return this;
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public Builder clearHistoryDetailResponse() {
-      if (historyDetailResponseBuilder_ == null) {
-        historyDetailResponse_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000004);
+    public Builder clearData() {
+      if (dataBuilder_ == null) {
+        data_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
       } else {
-        historyDetailResponseBuilder_.clear();
+        dataBuilder_.clear();
       }
       return this;
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public Builder removeHistoryDetailResponse(int index) {
-      if (historyDetailResponseBuilder_ == null) {
-        ensureHistoryDetailResponseIsMutable();
-        historyDetailResponse_.remove(index);
+    public Builder removeData(int index) {
+      if (dataBuilder_ == null) {
+        ensureDataIsMutable();
+        data_.remove(index);
         onChanged();
       } else {
-        historyDetailResponseBuilder_.remove(index);
+        dataBuilder_.remove(index);
       }
       return this;
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public HistoryDetailResponse.Builder getHistoryDetailResponseBuilder(
+    public HistoryDataResponse.Builder getDataBuilder(
         int index) {
-      return getHistoryDetailResponseFieldBuilder().getBuilder(index);
+      return getDataFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public HistoryDetailResponseOrBuilder getHistoryDetailResponseOrBuilder(
+    public HistoryDataResponseOrBuilder getDataOrBuilder(
         int index) {
-      if (historyDetailResponseBuilder_ == null) {
-        return historyDetailResponse_.get(index);  } else {
-        return historyDetailResponseBuilder_.getMessageOrBuilder(index);
+      if (dataBuilder_ == null) {
+        return data_.get(index);  } else {
+        return dataBuilder_.getMessageOrBuilder(index);
       }
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public java.util.List<? extends HistoryDetailResponseOrBuilder>
-         getHistoryDetailResponseOrBuilderList() {
-      if (historyDetailResponseBuilder_ != null) {
-        return historyDetailResponseBuilder_.getMessageOrBuilderList();
+    public java.util.List<? extends HistoryDataResponseOrBuilder>
+         getDataOrBuilderList() {
+      if (dataBuilder_ != null) {
+        return dataBuilder_.getMessageOrBuilderList();
       } else {
-        return java.util.Collections.unmodifiableList(historyDetailResponse_);
+        return java.util.Collections.unmodifiableList(data_);
       }
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public HistoryDetailResponse.Builder addHistoryDetailResponseBuilder() {
-      return getHistoryDetailResponseFieldBuilder().addBuilder(
-          HistoryDetailResponse.getDefaultInstance());
+    public HistoryDataResponse.Builder addDataBuilder() {
+      return getDataFieldBuilder().addBuilder(
+          HistoryDataResponse.getDefaultInstance());
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public HistoryDetailResponse.Builder addHistoryDetailResponseBuilder(
+    public HistoryDataResponse.Builder addDataBuilder(
         int index) {
-      return getHistoryDetailResponseFieldBuilder().addBuilder(
-          index, HistoryDetailResponse.getDefaultInstance());
+      return getDataFieldBuilder().addBuilder(
+          index, HistoryDataResponse.getDefaultInstance());
     }
     /**
-     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDetailResponse historyDetailResponse = 3;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.HistoryDataResponse data = 1;</code>
      */
-    public java.util.List<HistoryDetailResponse.Builder>
-         getHistoryDetailResponseBuilderList() {
-      return getHistoryDetailResponseFieldBuilder().getBuilderList();
+    public java.util.List<HistoryDataResponse.Builder>
+         getDataBuilderList() {
+      return getDataFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        HistoryDetailResponse, HistoryDetailResponse.Builder, HistoryDetailResponseOrBuilder>
-        getHistoryDetailResponseFieldBuilder() {
-      if (historyDetailResponseBuilder_ == null) {
-        historyDetailResponseBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            HistoryDetailResponse, HistoryDetailResponse.Builder, HistoryDetailResponseOrBuilder>(
-                historyDetailResponse_,
-                ((bitField0_ & 0x00000004) == 0x00000004),
+        HistoryDataResponse, HistoryDataResponse.Builder, HistoryDataResponseOrBuilder>
+        getDataFieldBuilder() {
+      if (dataBuilder_ == null) {
+        dataBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            HistoryDataResponse, HistoryDataResponse.Builder, HistoryDataResponseOrBuilder>(
+                data_,
+                ((bitField0_ & 0x00000001) == 0x00000001),
                 getParentForChildren(),
                 isClean());
-        historyDetailResponse_ = null;
+        data_ = null;
       }
-      return historyDetailResponseBuilder_;
+      return dataBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

@@ -12,13 +12,14 @@ public class Session {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    private Integer turns;
-
     private Date createdOn = new Date();
+
+    private Integer result = 0;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
 
     @OneToMany(
             mappedBy = "session",
@@ -59,6 +60,14 @@ public class Session {
 
     public void setCreatedOn(Date createdOn) {
         this.createdOn = createdOn;
+    }
+
+    public Integer getResult() {
+        return result;
+    }
+
+    public void setResult(Integer result) {
+        this.result = result;
     }
 
     public User getUser() {

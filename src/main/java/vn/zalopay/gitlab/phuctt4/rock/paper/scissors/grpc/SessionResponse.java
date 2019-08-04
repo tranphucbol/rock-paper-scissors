@@ -76,7 +76,7 @@ private static final long serialVersionUID = 0L;
       internalGetFieldAccessorTable() {
     return RockPaperScissors.internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_SessionResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            SessionResponse.class, SessionResponse.Builder.class);
+            SessionResponse.class, Builder.class);
   }
 
   public static final int ID_FIELD_NUMBER = 1;
@@ -256,7 +256,7 @@ private static final long serialVersionUID = 0L;
         internalGetFieldAccessorTable() {
       return RockPaperScissors.internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_SessionResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              SessionResponse.class, SessionResponse.Builder.class);
+              SessionResponse.class, Builder.class);
     }
 
     // Construct using vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.SessionResponse.newBuilder()
@@ -383,7 +383,7 @@ private static final long serialVersionUID = 0L;
      * <code>int64 id = 1;</code>
      */
     public Builder setId(long value) {
-
+      
       id_ = value;
       onChanged();
       return this;
@@ -392,7 +392,7 @@ private static final long serialVersionUID = 0L;
      * <code>int64 id = 1;</code>
      */
     public Builder clearId() {
-
+      
       id_ = 0L;
       onChanged();
       return this;

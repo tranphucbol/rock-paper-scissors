@@ -69,7 +69,7 @@ private static final long serialVersionUID = 0L;
       internalGetFieldAccessorTable() {
     return RockPaperScissors.internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_SessionRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            SessionRequest.class, SessionRequest.Builder.class);
+            SessionRequest.class, Builder.class);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -228,7 +228,7 @@ private static final long serialVersionUID = 0L;
         internalGetFieldAccessorTable() {
       return RockPaperScissors.internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_SessionRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              SessionRequest.class, SessionRequest.Builder.class);
+              SessionRequest.class, Builder.class);
     }
 
     // Construct using vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.SessionRequest.newBuilder()

@@ -16,7 +16,7 @@ import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.jwt.JwtTokenUtil;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.service.JwtUserDetailService;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.service.UserService;
 
-@GRpcService(interceptors = JwtAuthenticateInterceptor.class)
+@GRpcService(applyGlobalInterceptors = false)
 public class JwtAuthenticationGrpcController extends AuthServiceGrpc.AuthServiceImplBase {
     @Autowired
     private UserService userService;

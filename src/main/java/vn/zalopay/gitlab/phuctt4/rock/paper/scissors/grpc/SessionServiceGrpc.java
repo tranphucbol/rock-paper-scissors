@@ -1,10 +1,18 @@
 package vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
 import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
 import static io.grpc.stub.ClientCalls.blockingUnaryCall;
 import static io.grpc.stub.ClientCalls.futureUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
@@ -33,7 +41,7 @@ public final class SessionServiceGrpc {
     if ((getCreateSessionMethod = SessionServiceGrpc.getCreateSessionMethod) == null) {
       synchronized (SessionServiceGrpc.class) {
         if ((getCreateSessionMethod = SessionServiceGrpc.getCreateSessionMethod) == null) {
-          SessionServiceGrpc.getCreateSessionMethod = getCreateSessionMethod =
+          SessionServiceGrpc.getCreateSessionMethod = getCreateSessionMethod = 
               io.grpc.MethodDescriptor.<SessionRequest, SessionResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
@@ -51,30 +59,30 @@ public final class SessionServiceGrpc {
      return getCreateSessionMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<SessionRequest,
-      SessionResponse> getGetAllHistoryMethod;
+  private static volatile io.grpc.MethodDescriptor<HistoryRequest,
+      HistoryResponse> getGetAllHistoryMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "getAllHistory",
-      requestType = SessionRequest.class,
-      responseType = SessionResponse.class,
+      requestType = HistoryRequest.class,
+      responseType = HistoryResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<SessionRequest,
-      SessionResponse> getGetAllHistoryMethod() {
-    io.grpc.MethodDescriptor<SessionRequest, SessionResponse> getGetAllHistoryMethod;
+  public static io.grpc.MethodDescriptor<HistoryRequest,
+      HistoryResponse> getGetAllHistoryMethod() {
+    io.grpc.MethodDescriptor<HistoryRequest, HistoryResponse> getGetAllHistoryMethod;
     if ((getGetAllHistoryMethod = SessionServiceGrpc.getGetAllHistoryMethod) == null) {
       synchronized (SessionServiceGrpc.class) {
         if ((getGetAllHistoryMethod = SessionServiceGrpc.getGetAllHistoryMethod) == null) {
-          SessionServiceGrpc.getGetAllHistoryMethod = getGetAllHistoryMethod =
-              io.grpc.MethodDescriptor.<SessionRequest, SessionResponse>newBuilder()
+          SessionServiceGrpc.getGetAllHistoryMethod = getGetAllHistoryMethod = 
+              io.grpc.MethodDescriptor.<HistoryRequest, HistoryResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.SessionService", "getAllHistory"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  SessionRequest.getDefaultInstance()))
+                  HistoryRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  SessionResponse.getDefaultInstance()))
+                  HistoryResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new SessionServiceMethodDescriptorSupplier("getAllHistory"))
                   .build();
           }
@@ -97,7 +105,7 @@ public final class SessionServiceGrpc {
     if ((getGetTopLimitMethod = SessionServiceGrpc.getGetTopLimitMethod) == null) {
       synchronized (SessionServiceGrpc.class) {
         if ((getGetTopLimitMethod = SessionServiceGrpc.getGetTopLimitMethod) == null) {
-          SessionServiceGrpc.getGetTopLimitMethod = getGetTopLimitMethod =
+          SessionServiceGrpc.getGetTopLimitMethod = getGetTopLimitMethod = 
               io.grpc.MethodDescriptor.<TopRequest, TopResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
@@ -129,7 +137,7 @@ public final class SessionServiceGrpc {
     if ((getPlayMethod = SessionServiceGrpc.getPlayMethod) == null) {
       synchronized (SessionServiceGrpc.class) {
         if ((getPlayMethod = SessionServiceGrpc.getPlayMethod) == null) {
-          SessionServiceGrpc.getPlayMethod = getPlayMethod =
+          SessionServiceGrpc.getPlayMethod = getPlayMethod = 
               io.grpc.MethodDescriptor.<PlayRequest, PlayResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
@@ -183,8 +191,8 @@ public final class SessionServiceGrpc {
 
     /**
      */
-    public void getAllHistory(SessionRequest request,
-                              io.grpc.stub.StreamObserver<SessionResponse> responseObserver) {
+    public void getAllHistory(HistoryRequest request,
+                              io.grpc.stub.StreamObserver<HistoryResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getGetAllHistoryMethod(), responseObserver);
     }
 
@@ -215,8 +223,8 @@ public final class SessionServiceGrpc {
             getGetAllHistoryMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                SessionRequest,
-                SessionResponse>(
+                HistoryRequest,
+                HistoryResponse>(
                   this, METHODID_GET_ALL_HISTORY)))
           .addMethod(
             getGetTopLimitMethod(),
@@ -264,8 +272,8 @@ public final class SessionServiceGrpc {
 
     /**
      */
-    public void getAllHistory(SessionRequest request,
-                              io.grpc.stub.StreamObserver<SessionResponse> responseObserver) {
+    public void getAllHistory(HistoryRequest request,
+                              io.grpc.stub.StreamObserver<HistoryResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getGetAllHistoryMethod(), getCallOptions()), request, responseObserver);
     }
@@ -314,7 +322,7 @@ public final class SessionServiceGrpc {
 
     /**
      */
-    public SessionResponse getAllHistory(SessionRequest request) {
+    public HistoryResponse getAllHistory(HistoryRequest request) {
       return blockingUnaryCall(
           getChannel(), getGetAllHistoryMethod(), getCallOptions(), request);
     }
@@ -362,8 +370,8 @@ public final class SessionServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<SessionResponse> getAllHistory(
-        SessionRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<HistoryResponse> getAllHistory(
+        HistoryRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getGetAllHistoryMethod(), getCallOptions()), request);
     }
@@ -412,8 +420,8 @@ public final class SessionServiceGrpc {
               (io.grpc.stub.StreamObserver<SessionResponse>) responseObserver);
           break;
         case METHODID_GET_ALL_HISTORY:
-          serviceImpl.getAllHistory((SessionRequest) request,
-              (io.grpc.stub.StreamObserver<SessionResponse>) responseObserver);
+          serviceImpl.getAllHistory((HistoryRequest) request,
+              (io.grpc.stub.StreamObserver<HistoryResponse>) responseObserver);
           break;
         case METHODID_GET_TOP_LIMIT:
           serviceImpl.getTopLimit((TopRequest) request,

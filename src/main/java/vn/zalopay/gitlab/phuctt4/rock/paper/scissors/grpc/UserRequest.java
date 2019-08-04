@@ -84,7 +84,7 @@ private static final long serialVersionUID = 0L;
       internalGetFieldAccessorTable() {
     return RockPaperScissors.internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_UserRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            UserRequest.class, UserRequest.Builder.class);
+            UserRequest.class, Builder.class);
   }
 
   public static final int USERNAME_FIELD_NUMBER = 1;
@@ -97,7 +97,7 @@ private static final long serialVersionUID = 0L;
     if (ref instanceof String) {
       return (String) ref;
     } else {
-      com.google.protobuf.ByteString bs =
+      com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       username_ = s;
@@ -111,7 +111,7 @@ private static final long serialVersionUID = 0L;
       getUsernameBytes() {
     Object ref = username_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b =
+      com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (String) ref);
       username_ = b;
@@ -131,7 +131,7 @@ private static final long serialVersionUID = 0L;
     if (ref instanceof String) {
       return (String) ref;
     } else {
-      com.google.protobuf.ByteString bs =
+      com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       password_ = s;
@@ -145,7 +145,7 @@ private static final long serialVersionUID = 0L;
       getPasswordBytes() {
     Object ref = password_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b =
+      com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (String) ref);
       password_ = b;
@@ -331,7 +331,7 @@ private static final long serialVersionUID = 0L;
         internalGetFieldAccessorTable() {
       return RockPaperScissors.internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_UserRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              UserRequest.class, UserRequest.Builder.class);
+              UserRequest.class, Builder.class);
     }
 
     // Construct using vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.UserRequest.newBuilder()
@@ -478,7 +478,7 @@ private static final long serialVersionUID = 0L;
         getUsernameBytes() {
       Object ref = username_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
         username_ = b;
@@ -495,7 +495,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) {
     throw new NullPointerException();
   }
-
+  
       username_ = value;
       onChanged();
       return this;
@@ -504,7 +504,7 @@ private static final long serialVersionUID = 0L;
      * <code>string username = 1;</code>
      */
     public Builder clearUsername() {
-
+      
       username_ = getDefaultInstance().getUsername();
       onChanged();
       return this;
@@ -518,7 +518,7 @@ private static final long serialVersionUID = 0L;
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+      
       username_ = value;
       onChanged();
       return this;
@@ -547,7 +547,7 @@ private static final long serialVersionUID = 0L;
         getPasswordBytes() {
       Object ref = password_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
         password_ = b;
@@ -564,7 +564,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) {
     throw new NullPointerException();
   }
-
+  
       password_ = value;
       onChanged();
       return this;
@@ -573,7 +573,7 @@ private static final long serialVersionUID = 0L;
      * <code>string password = 2;</code>
      */
     public Builder clearPassword() {
-
+      
       password_ = getDefaultInstance().getPassword();
       onChanged();
       return this;
@@ -587,7 +587,7 @@ private static final long serialVersionUID = 0L;
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+      
       password_ = value;
       onChanged();
       return this;

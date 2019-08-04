@@ -1,11 +1,18 @@
 package vn.zalopay.gitlab.phuctt4.rock.paper.scissors.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Repository;
+import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.dto.UserWinning;
+import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.Session;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.SessionCache;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.model.User;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 @Repository

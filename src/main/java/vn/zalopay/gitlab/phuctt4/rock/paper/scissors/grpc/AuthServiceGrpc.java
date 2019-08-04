@@ -1,10 +1,18 @@
 package vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
 import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
 import static io.grpc.stub.ClientCalls.blockingUnaryCall;
 import static io.grpc.stub.ClientCalls.futureUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
@@ -33,7 +41,7 @@ public final class AuthServiceGrpc {
     if ((getAuthMethod = AuthServiceGrpc.getAuthMethod) == null) {
       synchronized (AuthServiceGrpc.class) {
         if ((getAuthMethod = AuthServiceGrpc.getAuthMethod) == null) {
-          AuthServiceGrpc.getAuthMethod = getAuthMethod =
+          AuthServiceGrpc.getAuthMethod = getAuthMethod = 
               io.grpc.MethodDescriptor.<UserRequest, UserResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(

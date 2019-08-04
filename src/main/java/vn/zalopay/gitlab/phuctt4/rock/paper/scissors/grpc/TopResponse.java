@@ -16,8 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private TopResponse() {
-    username_ = "";
-    rate_ = 0D;
+    data_ = java.util.Collections.emptyList();
   }
 
   @Override
@@ -52,14 +51,12 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 10: {
-            String s = input.readStringRequireUtf8();
-
-            username_ = s;
-            break;
-          }
-          case 17: {
-
-            rate_ = input.readDouble();
+            if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              data_ = new java.util.ArrayList<TopDataResponse>();
+              mutable_bitField0_ |= 0x00000001;
+            }
+            data_.add(
+                input.readMessage(TopDataResponse.parser(), extensionRegistry));
             break;
           }
         }
@@ -70,6 +67,9 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        data_ = java.util.Collections.unmodifiableList(data_);
+      }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
@@ -83,50 +83,42 @@ private static final long serialVersionUID = 0L;
       internalGetFieldAccessorTable() {
     return RockPaperScissors.internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_TopResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            TopResponse.class, TopResponse.Builder.class);
+            TopResponse.class, Builder.class);
   }
 
-  public static final int USERNAME_FIELD_NUMBER = 1;
-  private volatile Object username_;
+  public static final int DATA_FIELD_NUMBER = 1;
+  private java.util.List<TopDataResponse> data_;
   /**
-   * <code>string username = 1;</code>
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
    */
-  public String getUsername() {
-    Object ref = username_;
-    if (ref instanceof String) {
-      return (String) ref;
-    } else {
-      com.google.protobuf.ByteString bs =
-          (com.google.protobuf.ByteString) ref;
-      String s = bs.toStringUtf8();
-      username_ = s;
-      return s;
-    }
+  public java.util.List<TopDataResponse> getDataList() {
+    return data_;
   }
   /**
-   * <code>string username = 1;</code>
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
    */
-  public com.google.protobuf.ByteString
-      getUsernameBytes() {
-    Object ref = username_;
-    if (ref instanceof String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (String) ref);
-      username_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public java.util.List<? extends TopDataResponseOrBuilder>
+      getDataOrBuilderList() {
+    return data_;
   }
-
-  public static final int RATE_FIELD_NUMBER = 2;
-  private double rate_;
   /**
-   * <code>double rate = 2;</code>
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
    */
-  public double getRate() {
-    return rate_;
+  public int getDataCount() {
+    return data_.size();
+  }
+  /**
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
+   */
+  public TopDataResponse getData(int index) {
+    return data_.get(index);
+  }
+  /**
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
+   */
+  public TopDataResponseOrBuilder getDataOrBuilder(
+      int index) {
+    return data_.get(index);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -141,11 +133,8 @@ private static final long serialVersionUID = 0L;
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getUsernameBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
-    }
-    if (rate_ != 0D) {
-      output.writeDouble(2, rate_);
+    for (int i = 0; i < data_.size(); i++) {
+      output.writeMessage(1, data_.get(i));
     }
     unknownFields.writeTo(output);
   }
@@ -155,12 +144,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getUsernameBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
-    }
-    if (rate_ != 0D) {
+    for (int i = 0; i < data_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(2, rate_);
+        .computeMessageSize(1, data_.get(i));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -178,12 +164,8 @@ private static final long serialVersionUID = 0L;
     TopResponse other = (TopResponse) obj;
 
     boolean result = true;
-    result = result && getUsername()
-        .equals(other.getUsername());
-    result = result && (
-        Double.doubleToLongBits(getRate())
-        == Double.doubleToLongBits(
-            other.getRate()));
+    result = result && getDataList()
+        .equals(other.getDataList());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -195,11 +177,10 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + USERNAME_FIELD_NUMBER;
-    hash = (53 * hash) + getUsername().hashCode();
-    hash = (37 * hash) + RATE_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        Double.doubleToLongBits(getRate()));
+    if (getDataCount() > 0) {
+      hash = (37 * hash) + DATA_FIELD_NUMBER;
+      hash = (53 * hash) + getDataList().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -309,7 +290,7 @@ private static final long serialVersionUID = 0L;
         internalGetFieldAccessorTable() {
       return RockPaperScissors.internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_TopResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              TopResponse.class, TopResponse.Builder.class);
+              TopResponse.class, Builder.class);
     }
 
     // Construct using vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopResponse.newBuilder()
@@ -325,14 +306,17 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
+        getDataFieldBuilder();
       }
     }
     public Builder clear() {
       super.clear();
-      username_ = "";
-
-      rate_ = 0D;
-
+      if (dataBuilder_ == null) {
+        data_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+      } else {
+        dataBuilder_.clear();
+      }
       return this;
     }
 
@@ -355,8 +339,16 @@ private static final long serialVersionUID = 0L;
 
     public TopResponse buildPartial() {
       TopResponse result = new TopResponse(this);
-      result.username_ = username_;
-      result.rate_ = rate_;
+      int from_bitField0_ = bitField0_;
+      if (dataBuilder_ == null) {
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          data_ = java.util.Collections.unmodifiableList(data_);
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.data_ = data_;
+      } else {
+        result.data_ = dataBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -398,12 +390,31 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(TopResponse other) {
       if (other == TopResponse.getDefaultInstance()) return this;
-      if (!other.getUsername().isEmpty()) {
-        username_ = other.username_;
-        onChanged();
-      }
-      if (other.getRate() != 0D) {
-        setRate(other.getRate());
+      if (dataBuilder_ == null) {
+        if (!other.data_.isEmpty()) {
+          if (data_.isEmpty()) {
+            data_ = other.data_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureDataIsMutable();
+            data_.addAll(other.data_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.data_.isEmpty()) {
+          if (dataBuilder_.isEmpty()) {
+            dataBuilder_.dispose();
+            dataBuilder_ = null;
+            data_ = other.data_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+            dataBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getDataFieldBuilder() : null;
+          } else {
+            dataBuilder_.addAllMessages(other.data_);
+          }
+        }
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -431,100 +442,246 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+    private int bitField0_;
 
-    private Object username_ = "";
+    private java.util.List<TopDataResponse> data_ =
+      java.util.Collections.emptyList();
+    private void ensureDataIsMutable() {
+      if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        data_ = new java.util.ArrayList<TopDataResponse>(data_);
+        bitField0_ |= 0x00000001;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        TopDataResponse, TopDataResponse.Builder, TopDataResponseOrBuilder> dataBuilder_;
+
     /**
-     * <code>string username = 1;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
      */
-    public String getUsername() {
-      Object ref = username_;
-      if (!(ref instanceof String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        username_ = s;
-        return s;
+    public java.util.List<TopDataResponse> getDataList() {
+      if (dataBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(data_);
       } else {
-        return (String) ref;
+        return dataBuilder_.getMessageList();
       }
     }
     /**
-     * <code>string username = 1;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getUsernameBytes() {
-      Object ref = username_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        username_ = b;
-        return b;
+    public int getDataCount() {
+      if (dataBuilder_ == null) {
+        return data_.size();
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        return dataBuilder_.getCount();
       }
     }
     /**
-     * <code>string username = 1;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
      */
-    public Builder setUsername(
-        String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-
-      username_ = value;
-      onChanged();
+    public TopDataResponse getData(int index) {
+      if (dataBuilder_ == null) {
+        return data_.get(index);
+      } else {
+        return dataBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
+     */
+    public Builder setData(
+        int index, TopDataResponse value) {
+      if (dataBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureDataIsMutable();
+        data_.set(index, value);
+        onChanged();
+      } else {
+        dataBuilder_.setMessage(index, value);
+      }
       return this;
     }
     /**
-     * <code>string username = 1;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
      */
-    public Builder clearUsername() {
-
-      username_ = getDefaultInstance().getUsername();
-      onChanged();
+    public Builder setData(
+        int index, TopDataResponse.Builder builderForValue) {
+      if (dataBuilder_ == null) {
+        ensureDataIsMutable();
+        data_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        dataBuilder_.setMessage(index, builderForValue.build());
+      }
       return this;
     }
     /**
-     * <code>string username = 1;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
      */
-    public Builder setUsernameBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-
-      username_ = value;
-      onChanged();
-      return this;
-    }
-
-    private double rate_ ;
-    /**
-     * <code>double rate = 2;</code>
-     */
-    public double getRate() {
-      return rate_;
-    }
-    /**
-     * <code>double rate = 2;</code>
-     */
-    public Builder setRate(double value) {
-
-      rate_ = value;
-      onChanged();
+    public Builder addData(TopDataResponse value) {
+      if (dataBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureDataIsMutable();
+        data_.add(value);
+        onChanged();
+      } else {
+        dataBuilder_.addMessage(value);
+      }
       return this;
     }
     /**
-     * <code>double rate = 2;</code>
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
      */
-    public Builder clearRate() {
-
-      rate_ = 0D;
-      onChanged();
+    public Builder addData(
+        int index, TopDataResponse value) {
+      if (dataBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureDataIsMutable();
+        data_.add(index, value);
+        onChanged();
+      } else {
+        dataBuilder_.addMessage(index, value);
+      }
       return this;
+    }
+    /**
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
+     */
+    public Builder addData(
+        TopDataResponse.Builder builderForValue) {
+      if (dataBuilder_ == null) {
+        ensureDataIsMutable();
+        data_.add(builderForValue.build());
+        onChanged();
+      } else {
+        dataBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
+     */
+    public Builder addData(
+        int index, TopDataResponse.Builder builderForValue) {
+      if (dataBuilder_ == null) {
+        ensureDataIsMutable();
+        data_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        dataBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
+     */
+    public Builder addAllData(
+        Iterable<? extends TopDataResponse> values) {
+      if (dataBuilder_ == null) {
+        ensureDataIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, data_);
+        onChanged();
+      } else {
+        dataBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
+     */
+    public Builder clearData() {
+      if (dataBuilder_ == null) {
+        data_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+      } else {
+        dataBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
+     */
+    public Builder removeData(int index) {
+      if (dataBuilder_ == null) {
+        ensureDataIsMutable();
+        data_.remove(index);
+        onChanged();
+      } else {
+        dataBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
+     */
+    public TopDataResponse.Builder getDataBuilder(
+        int index) {
+      return getDataFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
+     */
+    public TopDataResponseOrBuilder getDataOrBuilder(
+        int index) {
+      if (dataBuilder_ == null) {
+        return data_.get(index);  } else {
+        return dataBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
+     */
+    public java.util.List<? extends TopDataResponseOrBuilder>
+         getDataOrBuilderList() {
+      if (dataBuilder_ != null) {
+        return dataBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(data_);
+      }
+    }
+    /**
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
+     */
+    public TopDataResponse.Builder addDataBuilder() {
+      return getDataFieldBuilder().addBuilder(
+          TopDataResponse.getDefaultInstance());
+    }
+    /**
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
+     */
+    public TopDataResponse.Builder addDataBuilder(
+        int index) {
+      return getDataFieldBuilder().addBuilder(
+          index, TopDataResponse.getDefaultInstance());
+    }
+    /**
+     * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
+     */
+    public java.util.List<TopDataResponse.Builder>
+         getDataBuilderList() {
+      return getDataFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        TopDataResponse, TopDataResponse.Builder, TopDataResponseOrBuilder>
+        getDataFieldBuilder() {
+      if (dataBuilder_ == null) {
+        dataBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            TopDataResponse, TopDataResponse.Builder, TopDataResponseOrBuilder>(
+                data_,
+                ((bitField0_ & 0x00000001) == 0x00000001),
+                getParentForChildren(),
+                isClean());
+        data_ = null;
+      }
+      return dataBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

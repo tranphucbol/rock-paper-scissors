@@ -8,17 +8,26 @@ public interface TopResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string username = 1;</code>
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
    */
-  String getUsername();
+  java.util.List<TopDataResponse>
+      getDataList();
   /**
-   * <code>string username = 1;</code>
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
    */
-  com.google.protobuf.ByteString
-      getUsernameBytes();
-
+  TopDataResponse getData(int index);
   /**
-   * <code>double rate = 2;</code>
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
    */
-  double getRate();
+  int getDataCount();
+  /**
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
+   */
+  java.util.List<? extends TopDataResponseOrBuilder>
+      getDataOrBuilderList();
+  /**
+   * <code>repeated .vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.TopDataResponse data = 1;</code>
+   */
+  TopDataResponseOrBuilder getDataOrBuilder(
+          int index);
 }

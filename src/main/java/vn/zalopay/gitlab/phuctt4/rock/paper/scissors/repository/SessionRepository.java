@@ -11,4 +11,6 @@ import java.util.List;
 public interface SessionRepository extends JpaRepository<Session, Long> {
     Session findByIdAndUserId(Long id, Long userId);
     List<Session> findAllByUser(User user);
+    Integer countByUserId(Long userId);
+    Integer countByResultAndUserId(Integer result, Long userId);
 }

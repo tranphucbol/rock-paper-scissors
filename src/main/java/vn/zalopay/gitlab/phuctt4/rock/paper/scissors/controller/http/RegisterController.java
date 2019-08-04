@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.dto.DataResponse;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.dto.UserLoginForm;
 import vn.zalopay.gitlab.phuctt4.rock.paper.scissors.service.UserService;
 
@@ -22,15 +23,15 @@ public class RegisterController {
     @PostMapping(path = "/register")
     public ResponseEntity<?> registerUser(@RequestBody UserLoginForm userLoginForm) {
         LOGGER.info("Request /register");
-        JSONObject response = new JSONObject();
+        DataResponse dataResponse = new DataResponse();
         if(userService.registerUser(userLoginForm.getUsername(), userLoginForm.getPassword())) {
             LOGGER.info("{} registers successfully", userLoginForm.getUsername());
-            response.put("message", "Registering successfully");
+            dataResponse.setMessage("Registering successfully");
         } else {
-            response.put("error", "Username existed");
+            dataResponse.setError("Username existed");
             LOGGER.error("Username {} existed", userLoginForm.getUsername());
         }
-        return ResponseEntity.ok(response.toMap());
+        return ResponseEntity.ok(dataResponse);
     }
 
 }

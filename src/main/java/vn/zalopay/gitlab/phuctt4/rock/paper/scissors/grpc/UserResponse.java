@@ -77,7 +77,7 @@ private static final long serialVersionUID = 0L;
       internalGetFieldAccessorTable() {
     return RockPaperScissors.internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_UserResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            UserResponse.class, UserResponse.Builder.class);
+            UserResponse.class, Builder.class);
   }
 
   public static final int TOKEN_FIELD_NUMBER = 1;
@@ -90,7 +90,7 @@ private static final long serialVersionUID = 0L;
     if (ref instanceof String) {
       return (String) ref;
     } else {
-      com.google.protobuf.ByteString bs =
+      com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       token_ = s;
@@ -104,7 +104,7 @@ private static final long serialVersionUID = 0L;
       getTokenBytes() {
     Object ref = token_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b =
+      com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (String) ref);
       token_ = b;
@@ -280,7 +280,7 @@ private static final long serialVersionUID = 0L;
         internalGetFieldAccessorTable() {
       return RockPaperScissors.internal_static_vn_zalopay_gitlab_phuctt4_rock_paper_scissors_grpc_UserResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              UserResponse.class, UserResponse.Builder.class);
+              UserResponse.class, Builder.class);
     }
 
     // Construct using vn.zalopay.gitlab.phuctt4.rock.paper.scissors.grpc.UserResponse.newBuilder()
@@ -420,7 +420,7 @@ private static final long serialVersionUID = 0L;
         getTokenBytes() {
       Object ref = token_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
         token_ = b;
@@ -437,7 +437,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) {
     throw new NullPointerException();
   }
-
+  
       token_ = value;
       onChanged();
       return this;
@@ -446,7 +446,7 @@ private static final long serialVersionUID = 0L;
      * <code>string token = 1;</code>
      */
     public Builder clearToken() {
-
+      
       token_ = getDefaultInstance().getToken();
       onChanged();
       return this;
@@ -460,7 +460,7 @@ private static final long serialVersionUID = 0L;
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+      
       token_ = value;
       onChanged();
       return this;
