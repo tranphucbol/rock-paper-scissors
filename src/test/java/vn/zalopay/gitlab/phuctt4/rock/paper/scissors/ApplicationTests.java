@@ -66,6 +66,17 @@ public class ApplicationTests {
 	}
 
 	@Test
+	public void testRegister_UserExist() throws Exception {
+		UserLoginForm userLoginForm = new UserLoginForm();
+		userLoginForm.setUsername("tranphucbol");
+		userLoginForm.setPassword("password");
+		mockMvc.perform(post("/register")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(userLoginForm)))
+				.andExpect(jsonPath("$.error", is("Username existed")));
+	}
+
+	@Test
 	public void testLogin() throws Exception {
 		UserLoginForm userLoginForm = new UserLoginForm();
 		userLoginForm.setUsername("tranphucbol");
@@ -75,6 +86,30 @@ public class ApplicationTests {
 				.content(objectMapper.writeValueAsString(userLoginForm)))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.token").exists());
+	}
+
+	@Test
+	public void testLoginFail_WrongPassword() throws Exception {
+		UserLoginForm userLoginForm = new UserLoginForm();
+		userLoginForm.setUsername("tranphucbol");
+		userLoginForm.setPassword("password12");
+		mockMvc.perform(post("/auth")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(userLoginForm)))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.error", is("Wrong username or password")));
+	}
+
+	@Test
+	public void testLoginFail_WrongUsername() throws Exception {
+		UserLoginForm userLoginForm = new UserLoginForm();
+		userLoginForm.setUsername("tranphucbol12");
+		userLoginForm.setPassword("password");
+		mockMvc.perform(post("/auth")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(userLoginForm)))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.error", is("Wrong username or password")));
 	}
 
 	@Test
